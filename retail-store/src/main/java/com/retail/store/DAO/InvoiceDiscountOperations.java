@@ -81,7 +81,7 @@ public class InvoiceDiscountOperations implements IDiscount {
 				return new BigDecimal(0.05); // if the user has been a customer for over 2 years, he gets a 5% discount
 			}
 		}
-		return null;
+		throw new IllegalArgumentException("cannot get percentage without type of user");
 	}
 
 	/**
