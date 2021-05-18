@@ -28,12 +28,17 @@ public class InvoiceDiscountOperations implements IDiscount {
 		if (products == null) {
 			throw new NullPointerException("no available products");
 		}
+		boolean isGrocery = false;
 
 		BigDecimal Total = BigDecimal.ZERO;
 		for (Product product : products) {
+			if (category != null && !isGrocery && category.equals(ProductCategory.GROCERIES)) {
+				isGrocery = true;
+				Total = BigDecimal.ZERO;
+			}
 			if (category != null && category.equals(product.getCategory())) {
 				Total = Total.add(product.getPrice()); // calculate total for products of specific category
-			} else {
+			} else if (!isGrocery) {
 				Total = Total.add(product.getPrice()); // calculate total for all products
 			}
 		}

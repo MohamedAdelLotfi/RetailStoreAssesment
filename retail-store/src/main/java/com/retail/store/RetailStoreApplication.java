@@ -3,9 +3,15 @@ package com.retail.store;
 import java.util.Collection;
 import java.util.HashSet;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.*;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -24,6 +30,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 public class RetailStoreApplication {
+
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	public static void main(String[] args) {
 		SpringApplication.run(RetailStoreApplication.class, args);
@@ -45,6 +54,11 @@ public class RetailStoreApplication {
 				"urn:tos",
 				new Contact("Retail Support", "https://nasnav.retail-store.com/", "hello@nasnav.retail-store.com"),
 				"Unlicense", "...", extensions);
+	}
+
+	@PostConstruct
+	public void setUp() {
+		objectMapper.registerModule(new JavaTimeModule());
 	}
 
 }

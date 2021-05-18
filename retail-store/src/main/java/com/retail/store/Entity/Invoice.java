@@ -1,17 +1,33 @@
 package com.retail.store.Entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * @author MohamedAdel
  */
-public class Invoice {
+public class Invoice implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private List<Product> products;
-	private BigDecimal GrandTotal;
-	private BigDecimal NetTotal;
-	private BigDecimal TotalInvoice;
+	private BigDecimal grandTotal;
+	private BigDecimal netTotal;
+	private BigDecimal totalInvoice;
+	
+	public Invoice(){
+		
+	}
+
+	public Invoice(List<Product> products, BigDecimal GrandTotal, BigDecimal NetTotal) {
+		setProducts(products);
+		setGrandTotal(GrandTotal);
+		setNetTotal(NetTotal);
+	}
 
 	public List<Product> getProducts() {
 		return products;
@@ -25,33 +41,33 @@ public class Invoice {
 	 * Total without any deductions
 	 **/
 	public BigDecimal getGrandTotal() {
-		return GrandTotal;
+		return grandTotal;
 	}
 
 	public void setGrandTotal(BigDecimal GrandTotal) {
-		this.GrandTotal = GrandTotal;
+		this.grandTotal = GrandTotal;
 	}
 
 	/**
 	 * Total minus from discounts
 	 **/
 	public BigDecimal getNetTotal() {
-		return NetTotal;
+		return netTotal;
 	}
 
 	public void setNetTotal(BigDecimal NetTotal) {
-		this.NetTotal = NetTotal;
+		this.netTotal = NetTotal;
 	}
 
 	/**
 	 * Total of Invoice
 	 **/
 	public BigDecimal getTotalInvoice() {
-		return TotalInvoice;
+		return totalInvoice;
 	}
 
 	public void setTotalInvoice(BigDecimal TotalInvoice) {
-		this.TotalInvoice = TotalInvoice;
+		this.totalInvoice = TotalInvoice;
 	}
 
 }

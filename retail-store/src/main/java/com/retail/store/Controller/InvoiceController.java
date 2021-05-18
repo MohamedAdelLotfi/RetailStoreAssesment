@@ -26,7 +26,7 @@ public class InvoiceController {
 	@Autowired
 	private DiscountInvoiceCalculation discountInvoiceCalculation;
 
-	@PostMapping
+	@PostMapping(consumes = "application/json", produces = "application/json")
 	@ResponseStatus(HttpStatus.CREATED)
 	public BigDecimal createUserInvoiceDiscount(@RequestBody InvoiceCalculation invCal) {
 		User user = invCal.getUser();
